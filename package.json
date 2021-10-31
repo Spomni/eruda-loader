@@ -1,6 +1,6 @@
 {
   "name": "eruda-loader",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "loader to inject and init \"eruda\" into the bundle",
   "main": "index.js",
   "scripts": {
