@@ -45,4 +45,15 @@ describe('erudaLoader', function () {
 
     expect(content).toMatch(injectionRE)
   })
+
+  it('Should add the eruda module to the bundle', async () => {
+    const entry = { entry: './main.js' }
+    const stats = await compile(merge(erudaConfig, entry))
+
+    const modules = stats.toJson().modules
+    const moduleNames = modules.map((module) => module.name)
+
+    const matcher = expect.stringMatching(/.*node_modules\/eruda\/.+/)
+    expect(moduleNames).toEqual(expect.arrayContaining([matcher]))
+  })
 })
