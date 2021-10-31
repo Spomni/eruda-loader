@@ -1,14 +1,15 @@
 {
   "name": "eruda-loader",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.0",
+  "description": "loader to inject and init \"eruda\" into the bundle",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "release": "npm test && standard-version"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["webpack", "eruda", "loader"],
+  "author": "spomni",
+  "license": "MIT",
   "devDependencies": {
     "jest": "^27.3.1",
     "webpack": "^5.61.0",
@@ -19,5 +20,13 @@
   },
   "dependencies": {
     "eruda": "^2.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Spomni/eruda-loader.git"
+  },
+  "homepage": "https://github.com/Spomni/eruda-loader",
+  "bugs": {
+    "url": "https://github.com/Spomni/eruda-loader/issues"
   }
 }
