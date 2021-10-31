@@ -7,11 +7,16 @@
     "test": "jest",
     "release": "npm test && standard-version"
   },
-  "keywords": ["webpack", "eruda", "loader"],
+  "keywords": [
+    "webpack",
+    "eruda",
+    "loader"
+  ],
   "author": "spomni",
   "license": "MIT",
   "devDependencies": {
     "jest": "^27.3.1",
+    "standard-version": "^9.3.2",
     "webpack": "^5.61.0",
     "webpack-merge": "^5.8.0"
   },
