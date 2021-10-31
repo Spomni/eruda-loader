@@ -17,7 +17,7 @@ function getFirstModuleContent(stats) {
 
 describe('erudaLoader', function () {
 
-  it.skip('Should do nothing in the webpack production mode.', async () => {
+  it('Should do nothing in the webpack production mode.', async () => {
 
     const entry = { entry: './main.js' }
 
@@ -44,6 +44,5 @@ describe('erudaLoader', function () {
     const content = getFirstModuleContent(stats)
 
     expect(content).toMatch(injectionRE)
-    console.log(content);
   })
 })
