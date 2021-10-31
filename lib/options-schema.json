@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "type":"object",
+  "properties": {
+
+    "tool": {
+      "type":"array",
+      "items": {
+        "type":"string",
+        "enum": [
+          "console",
+          "elements",
+          "network",
+          "resources",
+          "sources",
+          "info",
+          "snippets",
+          "settings"
+        ]
+      }
+    },
+
+    "plugin": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

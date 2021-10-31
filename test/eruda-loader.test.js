@@ -1,6 +1,5 @@
 const { expect } = require('@jest/globals')
 const { merge } = require('webpack-merge')
-const path = require('path')
 
 const compile = require('./lib/compile')
 
@@ -9,6 +8,7 @@ const {
   noneMode,
   base: baseConfig,
   eruda: erudaConfig,
+  applyOptionsToEruda: applyOptionsToErudaConfig,
 } = require('./config-parts')
 
 function getFirstModuleContent(stats) {
@@ -55,5 +55,81 @@ describe('erudaLoader', function () {
 
     const matcher = expect.stringMatching(/.*node_modules\/eruda\/.+/)
     expect(moduleNames).toEqual(expect.arrayContaining([matcher]))
+  })
+
+  it('Should throw an error if the tool options are incorrect.', async () => {
+
+    const getConfig = (options) => merge(
+      { entry: './main.js' },
+      applyOptionsToErudaConfig(options),
+    )
+
+    await expect(
+      compile(getConfig({ tool: true }))
+    ).rejects.toThrowError()
+
+    await expect(
+      compile(getConfig({ tool: [ "first-tool", "second-tool" ] }))
+    ).rejects.toThrowError()
+
+  })
+
+  it('Should not throw any error if the tool options are correct', async () => {
+    const config = merge(
+      { entry: './main.js'},
+      applyOptionsToErudaConfig({
+        tool: [
+          "console",
+          "elements",
+          "network",
+          "resources",
+          "sources",
+          "info",
+          "snippets",
+          "settings",
+        ]
+      })
+    )
+
+    await expect(compile(config)).resolves.toBeDefined()
+  })
+
+  it.todo('Should call the eruda.init() method with passed tool options.')
+
+  it('Should throw an error if the plugin options are incorrect.', async () => {
+
+    const getConfig = (options) => merge(
+      { entry: './main.js' },
+      applyOptionsToErudaConfig(options),
+    )
+
+    await expect(
+      compile(getConfig({ plugin: true }))
+    ).rejects.toThrowError()
+  })
+
+  it('Should not throw any error if the plugin options are correct', async () => {
+    const config = merge(
+      { entry: './main.js'},
+      applyOptionsToErudaConfig({
+        tool: ['console', 'snippets'],
+        plugin: [
+          "eruda-fps",
+          "eruda-features",
+          "eruda-timing",
+          "eruda-memory",
+          "eruda-code",
+          // TODO(fix): eruda-benchmark require the "platform" module
+          // "eruda-benchmark",
+          // TODO(fix): eruda-geolocation doesn't see a document element
+          // "eruda-geolocation",
+          "eruda-dom",
+          "eruda-orientation",
+          "eruda-touches",
+        ]
+      })
+    )
+
+    await expect(compile(config)).resolves.toBeDefined()
   })
 })
