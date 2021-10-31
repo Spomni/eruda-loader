@@ -56,4 +56,8 @@ describe('erudaLoader', function () {
     const matcher = expect.stringMatching(/.*node_modules\/eruda\/.+/)
     expect(moduleNames).toEqual(expect.arrayContaining([matcher]))
   })
+
+  it.todo('Should throw an error if the tool options are incorrect.')
+
+  it.todo('Should call the eruda.init() method with passed tool options.')
 })
