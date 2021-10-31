@@ -18,6 +18,13 @@
           "settings"
         ]
       }
+    },
+
+    "plugin": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   }
 }
