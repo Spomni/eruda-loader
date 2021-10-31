@@ -16,5 +16,8 @@
   },
   "jest": {
     "testEnvironment": "node"
+  },
+  "dependencies": {
+    "eruda": "^2.4.1"
   }
 }
