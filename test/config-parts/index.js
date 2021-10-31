@@ -23,7 +23,7 @@ const eruda = merge(
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /main\.js$/,
           use: { loader: erudaLoaderPath },
         },
       ],
