@@ -1,5 +1,6 @@
 const path = require('path')
 const { merge } = require('webpack-merge')
+const clone = require('clone')
 
 const rootPath = path.resolve(__dirname, '../../')
 const testPath = path.resolve(rootPath, './test/')
@@ -38,11 +39,19 @@ const noneMode = {
   mode: 'none'
 }
 
+function applyOptionsToEruda(options) {
+  const config = clone(eruda)
+  config.module.rules[0].use.options = options
+  return config
+}
+
 const configParts = {
   base,
   eruda,
   prodMode,
   noneMode,
+  erudaLoaderPath,
+  applyOptionsToEruda,
 }
 
 module.exports = configParts

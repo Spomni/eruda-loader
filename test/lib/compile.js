@@ -8,11 +8,15 @@ class WebpackCompilationError extends Error {
 }
 
 function compile(config) {
+
+  const compiler = webpack(config)
+
   return new Promise((resolve, reject) => {
-    webpack(config, (err, stats) => {
+    compiler.run((err, stats) => {
       if (err) reject(err)
       if (stats.hasErrors()) reject(new WebpackCompilationError(stats))
 
+      compiler.close((closeErr) => closeErr ? reject(closeErr) : null)
       resolve(stats)
     })
   })

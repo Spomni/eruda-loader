@@ -15,6 +15,7 @@
   "author": "spomni",
   "license": "MIT",
   "devDependencies": {
+    "clone": "^2.1.2",
     "jest": "^27.3.1",
     "standard-version": "^9.3.2",
     "webpack": "^5.61.0",
