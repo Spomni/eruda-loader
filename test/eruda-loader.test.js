@@ -17,7 +17,7 @@ function getFirstModuleContent(stats) {
 
 describe('erudaLoader', function () {
 
-  it('Should do nothing in the webpack production mode.', async () => {
+  it.skip('Should do nothing in the webpack production mode.', async () => {
 
     const entry = { entry: './main.js' }
 
@@ -35,5 +35,15 @@ describe('erudaLoader', function () {
     expect(noneModeContent).toStrictEqual(noErudaContent)
   })
 
-  it.todo('Should add injection code to the bundle.')
+  it('Should add injection code to the bundle.', async () => {
+
+    const entry = { entry: './main.js' }
+    const injectionRE = /;\(function \(\) { \/\/ eruda injection\n[^]*}\)\(\) \/\/ eruda injection end/
+
+    const stats = await compile(merge(erudaConfig, entry))
+    const content = getFirstModuleContent(stats)
+
+    expect(content).toMatch(injectionRE)
+    console.log(content);
+  })
 })
