@@ -5,7 +5,7 @@ const rootPath = path.resolve(__dirname, '../../')
 const testPath = path.resolve(rootPath, './test/')
 const fixturePath = path.resolve(testPath, './fixture/')
 const distPath = path.resolve(testPath, './dist')
-const erudaLoaderPath = path.resolve(rootPath, './lib/eruda-loader.js')
+const erudaLoaderPath = path.resolve(rootPath, './index.js')
 
 const base = {
   mode: 'development',
